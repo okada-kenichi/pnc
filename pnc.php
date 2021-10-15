@@ -6,7 +6,7 @@ header('Content-Type: application/json; charset=UTF-8');
 if(isset($_GET["pnc"]) && !preg_match('/[^0-9]/', $_GET["pnc"]) && ($_GET["pnc"]) < 10000000000) {
     // pncをエスケープ(xss対策)
     $param = (int)htmlspecialchars($_GET["pnc"]);
-    $arr["status"] = "OK";
+    $arr["status"] = "成功";
     //メイン処理
     $remainder = 1;//初期値として1を代入
     for($i = 2; $i < ceil(sqrt($param)); $i++){//平方根まで調べればいいのでsqrt()でceilにて小数点以下切り上げ
@@ -31,10 +31,8 @@ if(isset($_GET["pnc"]) && !preg_match('/[^0-9]/', $_GET["pnc"]) && ($_GET["pnc"]
     $arr["status"] = "no";
 }
 
-// 配列をjson形式にデコードして出力, 第二引数は、整形するためのオプション
-print json_encode($arr, JSON_PRETTY_PRINT);
+// 配列をjson形式にデコードして出力, 第二引数は、日本語対応｜整形するためのオプション
+echo json_encode($arr, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
 
-//http://localhost/fst_webapi/pnc.php?pnc=10
-
-//https://note.com/kazztech/n/ndb3a5468f299
+//https://note.com/kazztech/n/ndb3a5468f299 参考
 ?>
