@@ -16,13 +16,14 @@ if(isset($_GET["pnc"]) && !preg_match('/[^0-9]/', $_GET["pnc"]) && ($_GET["pnc"]
         }
         //$remainderは1のまま
     }
-
+    $cal = (int)$i - 1;
+    $arr["checknumber"] = "{$param}";
+    $arr["calculations"] = "{$cal} times";
     if($remainder == 0){
-        $arr["{$param}"] = "Composite number";
-        $arr["calculations"] = "{$i} times";
+        $arr["number"] = "Composite number";
+        
     }else{
-        $arr["{$param}"] = "Prime number";
-        $arr["calculations"] = "{$i} times";
+        $arr["number"] = "Prime number";
     }
     
 } else {
